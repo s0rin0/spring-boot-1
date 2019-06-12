@@ -1,6 +1,7 @@
 package com.sorin.springboot1.email;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Table(name = "email")
 @Entity
@@ -9,11 +10,15 @@ public class Email {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @Column(name = "from_address", nullable = false)
     private String fromAddress;
+
     @Column(name = "subject", nullable = false)
     private String subject;
 
+    @Column(name = "received", nullable = false)
+    private LocalDateTime received = LocalDateTime.now();
 
     public Long getId() {
         return id;
@@ -37,5 +42,13 @@ public class Email {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public LocalDateTime getReceived() {
+        return received;
+    }
+
+    public void setReceived(LocalDateTime received) {
+        this.received = received;
     }
 }
